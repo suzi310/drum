@@ -2,11 +2,11 @@
   <div class="song-info">
     <div class="main" v-show="!isShow">
       <div class="song-msg">
-        <h3>{{song.name}}</h3>
-        <p>{{song.author}}</p>
+        <h3>{{this.$route.params.name}}</h3>
+        <p>xxx</p>
       </div>
       <div class="player">
-        <player :songUrl="song.url" @showDrum="show"></player>
+        <player :songUrl="songUrl" @showDrum="show"></player>
       </div>
     </div>
     <div class="music" v-show="isShow">
@@ -27,11 +27,18 @@ export default {
     return {
       isShow: false,
       // songName: "歌曲",
-      // songUrl: "http://localhost:3000/public/lg.mp3"
+      songUrl: "http://localhost:3000/public/"+this.$route.params.name+".mp3"
     };
   },
-  props: [ "song"],
-  computed: {
+  watch:{
+    $route(to, from){
+      if(to.path !== from.path){
+        this.songUrl="http://localhost:3000/public/"+this.$route.params.name+".mp3"
+      }
+    }
+  },
+  created(){
+    // 查询歌曲信息
 
   },
   components: {

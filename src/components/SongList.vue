@@ -1,6 +1,11 @@
 <template>
   <div class="song-list">
-    <el-table
+    <ul>
+      <li v-for="song in songList" :key="song.name">
+        <router-link :to="'/song/'+song.name">{{song.name}}</router-link>
+      </li>
+    </ul>
+    <!-- <el-table
       :data="tableData"
       :show-header="isShowHeader"
       style="width: 100%"
@@ -19,7 +24,7 @@
           <el-tag v-else type="success" size="mini">{{scope.row.state}}</el-tag>
           </template>
       </el-table-column>
-    </el-table>
+    </el-table> -->
   </div>
 </template>
 
@@ -29,13 +34,13 @@
     data() {
         return {
           isShowHeader: false,
-          tableData: [{
-            name: '歌曲1',
+          songList: [{
+            name: 'lg',
             state: '已下载',
             url: 'http://localhost:3000/public/lg.mp3',
             author: '音乐家a'
           }, {
-            name: '歌曲2',
+            name: 'Light',
             state: '已下载',
             url: 'http://localhost:3000/public/song.ogg',
             author: '音乐家b'

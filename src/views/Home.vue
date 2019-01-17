@@ -6,7 +6,8 @@
         <song-list></song-list>
       </el-aside>
       <el-main>
-        <song-info :song="song" />
+        <!-- <song-info :song="song" v-if="song.name"/> -->
+        <router-view></router-view>
       </el-main>
     </el-container>
   </div>

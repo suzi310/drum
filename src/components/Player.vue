@@ -21,13 +21,17 @@ export default {
     };
   },
   props: ["songUrl"],
+  watch(){
+    // songUrl()
+  },
   mounted() {
     this.initAudio();
     this.initRegion();
   },
+  updated(){
+    console.log('Updated!')
+  },
   destroyed(){
-    this.region.destroy();
-    this.wavesurfer.destroy();
   },
   methods: {
     initAudio() {
