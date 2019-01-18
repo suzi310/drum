@@ -6,7 +6,7 @@
         <p>xxx</p>
       </div>
       <div class="player">
-        <player :songUrl="songUrl" @showDrum="show"></player>
+        <player :songUrl="songUrl"></player>
       </div>
     </div>
   </div>

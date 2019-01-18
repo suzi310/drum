@@ -10,8 +10,12 @@
       <div class="timer">{{currentTime | timeFormatter}}/{{duration | timeFormatter}}</div>
     </div>
     <p>start: {{regionStart | timeFormatter}} end:{{regionEnd | timeFormatter}}</p>
-    <el-button type @click="test">test</el-button>
-    <div class="test" v-show="isShow">
+    <el-button type @click="showSpectrum">鼓谱</el-button>
+    <div class="spectrum-box" v-show="isShow">
+      <div class="spectrum">
+        <div class="line" :style="lineMove"></div>
+      </div>
+      <!-- <img src="../../../images/drum.jpg" alt="鼓谱"> -->
       <el-button type="default" @click="isShow=false">关闭</el-button>
     </div>
   </div>
@@ -30,6 +34,11 @@ export default {
       isLoading: true,
       currentTime: 0,
       duration: 0,
+      lineMove: {
+        top: "10%",
+        left: "5%",
+      }
+
       // regionStart: 0,
       // regionEnd: 0
     };
@@ -46,13 +55,13 @@ export default {
   },
 
   computed: {
-    regionStart(){
+    regionStart() {
       return this.duration * 0.3;
     },
 
-    regionEnd(){
+    regionEnd() {
       return this.duration * 0.5;
-    }
+    },
   },
 
   mounted() {
@@ -91,10 +100,10 @@ export default {
         drag: false,
         color: "rgba(0, 205, 205, 0.4)"
       });
-      this.region.on("update-end", ()=>{
+      this.region.on("update-end", () => {
         this.regionStart = this.region.start;
         this.regionEnd = this.region.end;
-      })
+      });
     },
 
     processAudio() {
@@ -102,9 +111,9 @@ export default {
         this.currentTime = this.wavesurfer.getCurrentTime();
       });
 
-      this.wavesurfer.on("seek", (progress)=>{
+      this.wavesurfer.on("seek", progress => {
         this.currentTime = this.duration * progress;
-      })
+      });
     },
 
     destroyAudio() {
@@ -124,7 +133,7 @@ export default {
       this.region.loop = this.isLoop;
     },
 
-    test() {
+    showSpectrum() {
       this.isShow = !this.isShow;
     }
   }
@@ -147,15 +156,33 @@ export default {
   min-width: 300px;
 }
 
-.test {
-  width: 100%;
-  height: 100%;
+.spectrum-box {
   position: absolute;
   top: 0;
   left: 0;
-  background: rgba(5, 5, 5, 0.5) url("../../../images/drum.jpg") no-repeat top center;
-  background-size: contain;
+  right: 0;
+  bottom: 0;
   z-index: 100;
-  text-align: right;
+  background-color: rgba(0,0,0, 0.4);
+
+  .spectrum {
+    width: 800px;
+    height: 1000px;
+    margin: 0 auto;
+    position: relative;
+    background: url("../../../images/drum.jpg") no-repeat;
+    background-size: cover;
+  }
+  .line {
+    width: 10px;
+    height: 60px;
+    background-color: #f00;
+    position: absolute;
+  }
+  .el-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
 }
 </style>
