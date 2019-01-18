@@ -3,6 +3,11 @@
     <ul>
       <li v-for="song in songList" :key="song.name">
         <router-link :to="'/song/'+song.name">{{song.name}}</router-link>
+        <div>
+                  <el-button type="primary" size="mini" v-if="song.state === '购买'">购买</el-button>
+        <el-tag type="success"  size="mini" v-else>{{song.state}}</el-tag>
+
+        </div>
       </li>
     </ul>
     <!-- <el-table
@@ -66,6 +71,24 @@
   }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+ul {
+  padding: 0;
+  margin: 0;
+}
+li {
+  list-style-type: none;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 10px;
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(45, 126, 126);
+  &:hover {
+    background-color: darkslategray;
+  }
+  a {
+    flex: 1;
+  }
+}
 </style>

@@ -6,7 +6,7 @@ import router from './router'
 import store from "./store.js";
 import 'normalize.css'
 import './styles/index.scss'
-import {Button, Container, Aside, Main, Form, FormItem, Input, Table, TableColumn, Tag, Switch} from 'element-ui';
+import {Button, Container, Aside, Main, Form, FormItem, Input, Table, TableColumn, Tag, Switch, Loading } from 'element-ui';
 Vue.use(Button)
 Vue.use(Container)
 Vue.use(Aside)
@@ -17,7 +17,8 @@ Vue.use(Input)
 Vue.use(Table)
 Vue.use(TableColumn)
 Vue.use(Tag)
-Vue.use(Switch)
+Vue.use(Switch) 
+Vue.use(Loading) 
 
 Vue.config.productionTip = false
 

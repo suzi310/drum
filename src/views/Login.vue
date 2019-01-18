@@ -57,7 +57,7 @@ export default {
       this.$refs[formName].validate(valid => {
         if (valid) {
           this.$router.push({path:"/"});
-          this.$store.commit('setUserName', this.ruleForm2.checkPass)
+          this.$store.commit('setUserName', this.ruleForm2.pass)
           console.log('登录成功');
         } else {
           console.log("error submit!!");
