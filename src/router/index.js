@@ -1,10 +1,10 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "../views/Home.vue";
-import Login from "../views/Login.vue";
-import Test from "../views/Test.vue";
-import Player from "../components/Player.vue";
-import SongInfo from "../components/SongInfo.vue";
+import Home from "../views/home/Home.vue";
+import Login from "../views/login/Login.vue";
+import Index from "../views/home/components/Index.vue";
+import Player from "../views/home/components/Player.vue";
+import SongInfo from "../views/home/components/SongInfo.vue";
 
 Vue.use(Router);
 
@@ -15,6 +15,10 @@ export default new Router({
       name: "home",
       component: Home,
       children: [
+        {
+          path: '',
+          component: Index
+        },
         {
           path: 'song/:name',
           component: SongInfo

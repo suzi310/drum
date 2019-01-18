@@ -6,6 +6,7 @@ import router from './router'
 import store from "./store.js";
 import 'normalize.css'
 import './styles/index.scss'
+import './filters.js'
 import {Button, Container, Aside, Main, Form, FormItem, Input, Table, TableColumn, Tag, Switch, Loading } from 'element-ui';
 Vue.use(Button)
 Vue.use(Container)

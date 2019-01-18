@@ -9,17 +9,11 @@
         <player :songUrl="songUrl" @showDrum="show"></player>
       </div>
     </div>
-    <div class="music" v-show="isShow">
-      <div class="drum">
-        <div class="line"></div>
-      </div>
-      <el-button @click="isShow=false">关闭</el-button>
-    </div>
   </div>
 </template>
 
 <script>
-import Player from "./Player";
+import Player from "@/views/home/components/Player";
 
 export default {
   name: "SongInfo",
@@ -45,11 +39,6 @@ export default {
     Player: Player
   },
   mounted() {},
-  methods: {
-    show() {
-      this.isShow = true;
-    }
-  }
 };
 </script>
 
@@ -69,34 +58,4 @@ export default {
   width: 100%;
 }
 
-.music {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  .drum {
-    position: relative;
-    width: 100%;
-    flex: 1;
-    background-color: #ddd;
-    background-image: url("../images/drum.jpg");
-    background-repeat: no-repeat;
-    background-size: contain ;
-    .line {
-      position: absolute;
-      top: 70px;
-      left: 30px;
-      width: 3px;
-      height: 50px;
-      background-color: green;
-      animation: move 5s linear;
-      // transition: all 10s linear;
-    }
-  }
-  .el-button {
-      // width: 30px;
-    }
-}
-@keyframes move {
-  to {left: 500px;}
-}
 </style>

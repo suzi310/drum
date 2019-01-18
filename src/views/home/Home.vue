@@ -15,9 +15,9 @@
 
 <script>
 // @ is an alias to /src 
-import UserInfo from "@/components/UserInfo.vue";
-import SongList from "@/components/SongList.vue";
-import SongInfo from "@/components/SongInfo.vue";
+import UserInfo from "@/views/home/components/UserInfo.vue";
+import SongList from "@/views/home/components/SongList.vue";
+import SongInfo from "@/views/home/components/SongInfo.vue";
 
 export default {
   name: "home",

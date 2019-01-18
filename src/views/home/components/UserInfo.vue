@@ -1,6 +1,6 @@
 <template>
   <div class="user-info">
-    <img class="avatar" src="../assets/logo.png">
+    <img class="avatar" src="../../../images/drum.jpg">
     <span class="username">{{this.$store.state.user.userName}}</span>
   </div>
 </template>
@@ -12,7 +12,7 @@ export default {
     return {
       user: {
         userName: "admin",
-        avatarPath: "./../assets/logo.png"
+        avatarPath: "../../../images/drum.jpg"
       }
     };
   }
