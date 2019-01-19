@@ -25,6 +25,12 @@
 import WaveSurfer from "wavesurfer.js";
 import Regions from "wavesurfer.js/dist/plugin/wavesurfer.regions.js";
 
+const INIT_LEFT = 5;   // 鼓谱进度线距离最左端的初始值
+const INIT_TOP = 7;  // 鼓谱进度线距离最顶端的初始值
+const SPACE = 11;   // 鼓谱的行距
+const ROW_PROCESS = 12.5;  // 一行鼓谱等于歌曲时长的百分比值 20
+const WIDTH_RATE = 6;  // 倍率 鼓谱进度线移动距离比歌曲进度 3.8
+
 export default {
   name: "Player",
   data() {
@@ -33,17 +39,12 @@ export default {
       isShow: false,
       isLoading: true,
       currentTime: 0,
-      duration: 0,
-      lineMove: {
-        top: "10%",
-        left: "5%",
-      }
-
-      // regionStart: 0,
-      // regionEnd: 0
+      duration: 0
     };
   },
+
   props: ["songUrl"],
+
   watch: {
     // 监听歌曲url，切换歌曲时销毁并重新创建wavesufer实例
     songUrl() {
@@ -62,6 +63,16 @@ export default {
     regionEnd() {
       return this.duration * 0.5;
     },
+
+    lineMove() {
+      let process = (this.currentTime / this.duration) * 100; // 歌曲进度百分值
+      let left = INIT_LEFT + process % ROW_PROCESS * WIDTH_RATE;
+      let top = INIT_TOP + SPACE * Math.floor(process / ROW_PROCESS);
+      return {
+        top: `${top}%`,
+        left: `${left}%`
+      };
+    }
   },
 
   mounted() {
@@ -163,19 +174,19 @@ export default {
   right: 0;
   bottom: 0;
   z-index: 100;
-  background-color: rgba(0,0,0, 0.4);
+  background-color: rgba(0, 0, 0, 0.4);
 
   .spectrum {
     width: 800px;
     height: 1000px;
     margin: 0 auto;
     position: relative;
-    background: url("../../../images/drum.jpg") no-repeat;
-    background-size: cover;
+    background: url("../../../images/rock.jpg") no-repeat;
+    background-size: contain;
   }
   .line {
     width: 10px;
-    height: 60px;
+    height: 100px;
     background-color: #f00;
     position: absolute;
   }

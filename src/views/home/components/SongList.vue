@@ -32,9 +32,9 @@ export default {
           author: "音乐家b"
         },
         {
-          name: "歌曲3",
+          name: "rock",
           state: "购买",
-          url: "http://localhost:3000/public/lg.mp3",
+          url: "http://localhost:3000/public/rock.mp3",
           author: "音乐家a"
         },
         {
