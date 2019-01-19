@@ -6,7 +6,8 @@
       :rules="loginRules"
       ref="loginForm"
       class="login-form"
-      label-position="left">
+      label-position="left"
+    >
       <h3 class="title">Title</h3>
       <el-form-item prop="userName">
         <el-input
@@ -118,7 +119,7 @@ $light: #eee;
   }
   .el-input {
     display: inline-block;
-    height: 47px;
+    // height: 100%;
     width: 85%;
     input {
       background: transparent;
@@ -127,17 +128,17 @@ $light: #eee;
       padding: 12px 5px;
       color: $light;
       &:-webkit-autofill {
-        -webkit-box-shadow: 0 0 0px 1000px $bg inset !important;
+        -webkit-box-shadow: 0 0 0px 1000px #283443 inset !important;
         -webkit-text-fill-color: #fff !important;
       }
     }
-    .el-form-item {
+  }
+      .el-form-item {
       border: 1px solid rgba(255, 255, 255, 0.1);
       background: rgba(0, 0, 0, 0.1);
       border-radius: 5px;
       color: #454545;
     }
-  }
 }
 </style>
 
