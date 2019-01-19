@@ -1,5 +1,5 @@
 <template>
-  <div class="user-info">
+  <div class="user-info-container">
     <img class="avatar" src="../../../images/drum.jpg">
     <span class="username">{{this.$store.state.user.userName}}</span>
   </div>
@@ -20,10 +20,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.user-info {
+
+.user-info-container {
     height: 90px;
     display: flex;
     align-items: center;
+    background-color: #5c8d89;
     .avatar {
         width: 50px;
         height: 50px;

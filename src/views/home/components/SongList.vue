@@ -3,7 +3,7 @@
     <ul>
       <li v-for="song in songList" :key="song.name">
         <router-link :to="'/song/'+song.name">{{song.name}}</router-link>
-        <div>
+        <div class="song-state">
           <el-button type="primary" size="mini" v-if="song.state === '购买'">购买</el-button>
           <el-tag type="success" size="mini" v-else>{{song.state}}</el-tag>
         </div>
@@ -60,23 +60,35 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$dark: #74b49b;
+$aside: #a7d7c5;
+$light: #f4f9f4;
+
 ul {
   padding: 0;
   margin: 0;
 }
 li {
+  position: relative;
   list-style-type: none;
   height: 50px;
   line-height: 50px;
-  display: flex;
-  justify-content: space-between;
-  background-color: rgb(45, 126, 126);
+  border-bottom: 1px solid #5c8d89;
   &:hover {
-    background-color: darkslategray;
+    background-color: $dark;
+  }
+  .song-state {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
   }
   a {
+    display: block;
     padding: 0 10px;
-    flex: 1;
   }
+}
+.router-link-active {
+  background-color: $dark;
 }
 </style>

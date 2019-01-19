@@ -3,10 +3,17 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import store from "./store.js";
+import store from "./store.js"
+
 import 'normalize.css'
 import './styles/index.scss'
+
 import './filters.js'
+
+import 'vue-awesome/icons'  // icon
+import Icon from 'vue-awesome/components/Icon'
+Vue.component('v-icon', Icon)
+
 import {Button, Container, Aside, Main, Form, FormItem, Input, Table, TableColumn, Tag, Switch, Loading } from 'element-ui';
 Vue.use(Button)
 Vue.use(Container)

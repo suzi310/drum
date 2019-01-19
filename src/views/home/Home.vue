@@ -1,6 +1,5 @@
 <template>
-  <div class="home">
-    <el-container>
+    <el-container class="home-container">
       <el-aside width="320px">
         <user-info></user-info>
         <song-list></song-list>
@@ -10,7 +9,6 @@
         <router-view></router-view>
       </el-main>
     </el-container>
-  </div>
 </template>
 
 <script>
@@ -39,17 +37,21 @@ export default {
 };
 </script>
 
-<style scoped>
-.home, .el-container {
+<style lang="scss" scoped>
+$dark: #74b49b;
+$aside: #a7d7c5;
+$light: #f4f9f4;
+
+.home-container {
   height: 100%;
 }
 .el-aside {
-  background-color: #d3dce6;
+  background-color: $aside;
   color: #333;
 }
 
 .el-main {
-  background-color: #e9eef3;
+  background-color: $light;
   color: #333;
 }
 </style>

@@ -2,7 +2,6 @@
   <div class="login-container">
     <el-form
       :model="loginForm"
-      status-icon
       :rules="loginRules"
       ref="loginForm"
       class="login-form"
@@ -10,6 +9,9 @@
     >
       <h3 class="title">Title</h3>
       <el-form-item prop="userName">
+        <span class="icon-container">
+          <v-icon name="user"/>
+        </span>
         <el-input
           type="text"
           v-model="loginForm.userName"
@@ -19,14 +21,20 @@
         />
       </el-form-item>
       <el-form-item prop="password">
+        <span class="icon-container">
+          <v-icon name="lock"/>
+        </span>
         <el-input
-          type="password"
+          :type="pwdType"
           name="password"
           v-model="loginForm.password"
           autocomplete="off"
           placeholder="请输入密码"
           @keyup.enter="submitForm"
         />
+        <span class="show-pwd" @click="showPwd">
+          <v-icon name="eye" :class="showPwdClass"/>
+        </span>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click.native.prevent="submitForm" style="width: 100%">登录</el-button>
@@ -71,6 +79,15 @@ export default {
       redirect: null
     };
   },
+  computed:{
+    showPwdClass(){
+      if(this.pwdType === "password"){
+        return "";
+      }else {
+        return "pwd-see";
+      }
+    }
+  },
   watch: {
     $route: {
       handler(route) {
@@ -80,6 +97,13 @@ export default {
     }
   },
   methods: {
+    showPwd(){
+      if(this.pwdType === "password") {
+        this.pwdType = "text";
+      }else {
+        this.pwdType = "password";
+      }
+    },
     submitForm(formName) {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
@@ -98,9 +122,10 @@ export default {
 </script>
 
 <style rel="stylescheet/scss" lang="scss" scope>
-$bg: #2d3a4b;
-$dark: #889aa4;
-$light: #eee;
+$bg: #5c8d89;
+$dark: #74b49b;
+$light: #f4f9f4;
+$input-bg: #537F7B;
 .login-container {
   width: 100%;
   height: 100%;
@@ -119,26 +144,47 @@ $light: #eee;
   }
   .el-input {
     display: inline-block;
-    // height: 100%;
     width: 85%;
     input {
       background: transparent;
       border: 0;
+      border-radius: 0;
       -webkit-appearance: none;
-      padding: 12px 5px;
       color: $light;
       &:-webkit-autofill {
-        -webkit-box-shadow: 0 0 0px 1000px #283443 inset !important;
+        -webkit-box-shadow: 0 0 0px 1000px $input-bg inset !important;
         -webkit-text-fill-color: #fff !important;
       }
     }
   }
-      .el-form-item {
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      background: rgba(0, 0, 0, 0.1);
-      border-radius: 5px;
-      color: #454545;
-    }
+  .el-form-item {
+    border: 1px solid $input-bg;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    color: #454545;
+  }
+}
+.icon-container {
+  display: inline-block;
+  width: 30px;
+  padding-left: 15px;
+  vertical-align: middle;
+  font-size: 1.5em;
+  color: $light;
+}
+
+.show-pwd {
+    position: absolute;
+    right: 15px;
+    top: 3px;
+    font-size: 1.5em;
+    color: $dark;
+    cursor: pointer;
+    user-select: none;
+}
+
+.pwd-see {
+  color: $light;
 }
 </style>
 
