@@ -61,7 +61,7 @@ export default {
 
 <style lang="scss" scoped>
 $dark: #74b49b;
-$aside: #a7d7c5;
+$mid-c: #a7d7c5;
 $light: #f4f9f4;
 
 ul {
@@ -73,10 +73,7 @@ li {
   list-style-type: none;
   height: 50px;
   line-height: 50px;
-  border-bottom: 1px solid #5c8d89;
-  &:hover {
-    background-color: $dark;
-  }
+
   .song-state {
     position: absolute;
     top: 50%;
@@ -86,9 +83,13 @@ li {
   a {
     display: block;
     padding: 0 10px;
+    transition: all 0.4s;
+    &.router-link-active {
+      background-color: $mid-c;
+    }
+    &:hover {
+      background-color: $dark;
+    }
   }
-}
-.router-link-active {
-  background-color: $dark;
 }
 </style>

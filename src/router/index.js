@@ -12,11 +12,12 @@ export default new Router({
   routes: [
     {
       path: "/",
+      redirect: "/index",
       name: "home",
       component: Home,
       children: [
         {
-          path: '',
+          path: '/index',
           component: Index
         },
         {

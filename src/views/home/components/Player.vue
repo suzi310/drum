@@ -2,8 +2,12 @@
   <div v-loading="isLoading">
     <div id="wave"></div>
     <div class="controls-bar">
-      <div class="controls">
-        <el-button @click="playPause">播放/暂停</el-button>
+      <div class="controls" v-show="!isLoading">
+        <el-button @click="playPause" type="primary">
+          <span class="icon-container">
+            <v-icon :name="isPlaying ? 'pause' : 'play'"></v-icon>
+          </span>
+        </el-button>
         <el-button @click="playRegion">区间播放</el-button>
         <el-switch v-model="isLoop" active-text="区间循环" @change="regionLoop"></el-switch>
       </div>
@@ -15,7 +19,6 @@
       <div class="spectrum">
         <div class="line" :style="lineMove"></div>
       </div>
-      <!-- <img src="../../../images/drum.jpg" alt="鼓谱"> -->
       <el-button type="default" @click="isShow=false">关闭</el-button>
     </div>
   </div>
@@ -39,7 +42,8 @@ export default {
       isShow: false,
       isLoading: true,
       currentTime: 0,
-      duration: 0
+      duration: 0,
+      isPlaying: false
     };
   },
 
@@ -48,10 +52,10 @@ export default {
   watch: {
     // 监听歌曲url，切换歌曲时销毁并重新创建wavesufer实例
     songUrl() {
+      this.isLoading = true;
       this.destroyAudio();
       this.initAudio();
       this.readyAudio();
-      this.processAudio();
     }
   },
 
@@ -78,17 +82,15 @@ export default {
   mounted() {
     this.initAudio();
     this.readyAudio();
-    this.processAudio();
   },
 
-  destroyed() {
-    this.wavesurfer.destroy();
+  beforeDestroy() {
+    this.destroyAudio();
   },
   methods: {
     initAudio() {
       this.wavesurfer = WaveSurfer.create({
         container: "#wave",
-        // maxCanvasWidth: 300,
         responsive: true,
         plugins: [Regions.create({})]
       });
@@ -101,6 +103,22 @@ export default {
         this.duration = this.wavesurfer.getDuration();
         this.initRegion();
       });
+
+      this.wavesurfer.on("audioprocess", () => {
+        this.currentTime = this.wavesurfer.getCurrentTime();
+      });
+
+      this.wavesurfer.on("seek", progress => {
+        this.currentTime = this.duration * progress;
+      });
+
+      this.wavesurfer.on("play", ()=>{
+        this.isPlaying = true;
+      });
+
+      this.wavesurfer.on("pause", ()=>{
+        this.isPlaying = false;
+      })
     },
 
     initRegion() {
@@ -117,19 +135,10 @@ export default {
       });
     },
 
-    processAudio() {
-      this.wavesurfer.on("audioprocess", () => {
-        this.currentTime = this.wavesurfer.getCurrentTime();
-      });
-
-      this.wavesurfer.on("seek", progress => {
-        this.currentTime = this.duration * progress;
-      });
-    },
-
     destroyAudio() {
-      this.wavesurfer.destroy();
-      this.isLoading = true;
+      if(this.wavesurfer){
+        this.wavesurfer.destroy();
+      }
     },
 
     playPause() {

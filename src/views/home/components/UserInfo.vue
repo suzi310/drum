@@ -25,7 +25,6 @@ export default {
     height: 90px;
     display: flex;
     align-items: center;
-    background-color: #5c8d89;
     .avatar {
         width: 50px;
         height: 50px;

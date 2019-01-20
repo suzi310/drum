@@ -5,7 +5,6 @@
         <song-list></song-list>
       </el-aside>
       <el-main>
-        <!-- <song-info :song="song" v-if="song.name"/> -->
         <router-view></router-view>
       </el-main>
     </el-container>
@@ -38,15 +37,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$bg: #5c8d89;
 $dark: #74b49b;
-$aside: #a7d7c5;
+$mid-c: #a7d7c5;
 $light: #f4f9f4;
 
 .home-container {
   height: 100%;
 }
 .el-aside {
-  background-color: $aside;
+  background-color: $bg;
   color: #333;
 }
 
