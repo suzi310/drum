@@ -108,6 +108,7 @@ export default {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loding = true;
+          
           this.$router.push({ path: this.redirect || "/" });
           this.$store.commit("setUserName", this.loginForm.userName);
           console.log("登录成功");

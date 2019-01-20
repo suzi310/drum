@@ -14,7 +14,7 @@ import 'vue-awesome/icons'  // icon
 import Icon from 'vue-awesome/components/Icon'
 Vue.component('v-icon', Icon)
 
-import {Button, Container, Aside, Main, Form, FormItem, Input, Table, TableColumn, Tag, Switch, Loading } from 'element-ui';
+import {Button, Container, Aside, Main, Form, FormItem, Input, Table, TableColumn, Tag, Switch, Loading, Select, Option } from 'element-ui';
 Vue.use(Button)
 Vue.use(Container)
 Vue.use(Aside)
@@ -26,7 +26,9 @@ Vue.use(Table)
 Vue.use(TableColumn)
 Vue.use(Tag)
 Vue.use(Switch) 
-Vue.use(Loading) 
+Vue.use(Loading)
+Vue.use(Select)
+Vue.use(Option)
 
 Vue.config.productionTip = false
 
