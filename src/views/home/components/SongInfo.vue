@@ -21,13 +21,13 @@ export default {
     return {
       isShow: false,
       // songName: "歌曲",
-      songUrl: "http://localhost:3000/public/"+this.$route.params.name+".mp3"
+      songUrl: "http://localhost:5000/public/"+this.$route.params.name+".mp3"
     };
   },
   watch:{
     $route(to, from){
       if(to.path !== from.path){
-        this.songUrl="http://localhost:3000/public/"+this.$route.params.name+".mp3"
+        this.songUrl="http://localhost:5000/public/"+this.$route.params.name+".mp3"
       }
     }
   },

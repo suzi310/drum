@@ -22,25 +22,19 @@ export default {
         {
           name: "lg",
           state: "已下载",
-          url: "http://localhost:3000/public/lg.mp3",
+          url: "http://localhost:5000/public/lg.mp3",
           author: "音乐家a"
         },
         {
           name: "Light",
           state: "已下载",
-          url: "http://localhost:3000/public/song.ogg",
+          url: "http://localhost:5000/public/song.ogg",
           author: "音乐家b"
         },
         {
           name: "rock",
           state: "购买",
-          url: "http://localhost:3000/public/rock.mp3",
-          author: "音乐家a"
-        },
-        {
-          name: "歌曲4",
-          state: "购买",
-          url: "http://localhost:3000/public/lg.mp3",
+          url: "http://localhost:5000/public/rock.mp3",
           author: "音乐家a"
         }
       ]

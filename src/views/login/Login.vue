@@ -33,7 +33,7 @@
           @keyup.enter="submitForm"
         />
         <span class="show-pwd" @click="showPwd">
-          <v-icon name="eye" :class="showPwdClass"/>
+          <v-icon name="eye" :class="{'pwd-see': this.pwdType !== 'password'}"/>
         </span>
       </el-form-item>
       <el-form-item>
@@ -79,15 +79,6 @@ export default {
       redirect: null
     };
   },
-  computed:{
-    showPwdClass(){
-      if(this.pwdType === "password"){
-        return "";
-      }else {
-        return "pwd-see";
-      }
-    }
-  },
   watch: {
     $route: {
       handler(route) {
@@ -108,7 +99,6 @@ export default {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loding = true;
-          
           this.$router.push({ path: this.redirect || "/" });
           this.$store.commit("setUserName", this.loginForm.userName);
           console.log("登录成功");

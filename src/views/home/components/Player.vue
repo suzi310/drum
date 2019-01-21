@@ -2,7 +2,7 @@
   <div v-loading="isLoading">
     <div id="wave"></div>
     <div class="controls-bar">
-      <div class="controls" v-show="!isLoading">
+      <div class="controls" >
         <el-button @click="playPause" type="primary">
           <span class="icon-container">
             <v-icon :name="isPlaying ? 'pause' : 'play'"></v-icon>
@@ -112,7 +112,6 @@ export default {
 
   computed: {
     lineMove() {
-      let process = (this.currentTime / this.duration) * 100; // 歌曲进度百分值
       let left = INIT_LEFT + (this.currentTime % ROW_TIME) * RATE;
       let top = INIT_TOP + SPACE * Math.floor(this.currentTime / ROW_TIME);
       return {
